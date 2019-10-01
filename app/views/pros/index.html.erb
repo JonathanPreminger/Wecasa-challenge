@@ -1,0 +1,13 @@
+<h2>Pro</h2>
+<% @pros.each do |pro| %>
+<p>__________________________________________________________</p>
+<p>Pro numero :<%= pro.id %></p>
+
+<p>name :<%= pro.name %></p>
+<p>address :<%= pro.address %></p>
+<p>lat :<%= pro.lat %></p>
+<p>lng :<%= pro.lng %></p>
+<p>max_kilometers :<%= pro.max_kilometers %></p>
+<p> prestation</p> : <%= pro.prestations %>
+
+<% end %>
