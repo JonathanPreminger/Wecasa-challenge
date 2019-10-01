@@ -13,7 +13,7 @@ class PrestationsController < ApplicationController
 
   private
 
-  def prestation_parmas
+  def prestation_params
     params.permit(:prestation).require(:reference, :duration, pro:[])
   end
 end

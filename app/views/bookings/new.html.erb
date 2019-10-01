@@ -1,0 +1,9 @@
+<%= form_for @booking do |f| %>
+  <p>Name <%= f.text_field :name %></p>
+
+  <%= f.fields_for :booking_prestations, BookingPrestation.new do |bp| %>
+  <p><%= bp.collection_select :prestation_id, Prestation.all, :id, :reference, {prompt: "The one you want"}, class:"text-field-collection" %></p>
+
+    <% end %>
+  <p><%= f.submit 'BOOK' %></p>
+<%end%>

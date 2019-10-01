@@ -16,7 +16,7 @@ class ProPrestationsController < ApplicationController
 
   private
 
-  def pro_prestation_parmas
+  def pro_prestation_params
     params.permit(:pro_prestation).require(:pro_id, :prestation_id)
   end
 

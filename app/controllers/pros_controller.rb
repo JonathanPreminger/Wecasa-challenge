@@ -16,7 +16,7 @@ class ProsController < ApplicationController
 
   private
 
-  def pro_parmas
+  def pro_params
     params.permit(:pro).require(:name, :address, :lat, :lng, :max_kilometers, prestations_ids: [])
   end
 

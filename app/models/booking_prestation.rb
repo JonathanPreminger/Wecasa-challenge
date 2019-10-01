@@ -1,6 +1,7 @@
 class BookingPrestation < ApplicationRecord
   belongs_to :booking
   belongs_to :prestation
+  accepts_nested_attributes_for :prestation
 
 
   def self.populate_from_json
