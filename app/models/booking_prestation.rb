@@ -12,10 +12,10 @@ class BookingPrestation < ApplicationRecord
       data_hash['bookings'][x]['prestations'].each do |booking_presta|
         puts "name presta"
         puts booking_presta
-        booking_presta = Prestation.find_by(reference:booking_presta)
+        @booking_presta = Prestation.find_by(reference:booking_presta)
         "presta id"
-        puts booking_presta.id
-        presta_id = booking_presta.id
+        puts @booking_presta.id
+        presta_id = @booking_presta.id
         booking_id = x + 1
         puts "B id"
         puts booking_id

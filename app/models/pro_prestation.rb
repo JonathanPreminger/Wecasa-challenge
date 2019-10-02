@@ -11,20 +11,23 @@ class ProPrestation < ApplicationRecord
 
    file = File.read('data.json')
    data_hash=JSON.parse(file)
+   y= 1
    data_hash['pros'].size.times do |x|
      data_hash['pros'][x]['prestations'].each do |pro_presta|
-       y= 1
-       pro_presta = Prestation.find_by(reference:pro_presta)
-       presta_id = pro_presta.id
+
+       puts pro_presta
+       @pro_presta = Prestation.find_by(reference:pro_presta)
+       presta_id = @pro_presta.id
        pro_id = y
        ProPrestation.create(pro_id:pro_id, prestation_id:presta_id)
-       y = x+1
      end
+     y = y+1
 
 end
 puts '____________________________________________pro presta'
 
  puts ProPrestation.all
+ puts ProPrestation.count
  puts '____________________________________________pro presta'
 
 end
