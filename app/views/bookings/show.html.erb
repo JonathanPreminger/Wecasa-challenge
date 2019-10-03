@@ -2,6 +2,7 @@
 <% if !@pro_valid.blank? %>
 <% @pro_valid.each do |pro|%>
 <p>pro who got skills required for booking id numero <%=   @booking.id  %> : <%=   pro  %></p>
-
 <%end%>
 <%end%>
+<p>address : <%= @add %></p>
+<p>lat and lng : <%=@results.first.coordinates%></p>

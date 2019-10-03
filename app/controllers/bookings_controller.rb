@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
   require 'set'
+
   def create
-    @booking = Booking.create(booking_params)
-     redirect_to bookings_path
+    @booking = Booking.create!(booking_params)
+    redirect_to @booking
   end
 
   def new
@@ -16,10 +17,11 @@ class BookingsController < ApplicationController
     @booking.prestations.each do |presta|
       @skills_required << presta.reference
     end
-    pro_possessing_desired_skills
+    who_got_the_skills
+    distance
   end
 
-  def pro_possessing_desired_skills
+  def who_got_the_skills
     @skills_availlable = []
     @pro_valid = []
 
@@ -64,6 +66,22 @@ class BookingsController < ApplicationController
     puts '___________________________________________________________pro valid'
     puts @pro_valid.inspect
   end
+
+  def distance
+    @paris = "Paris"
+
+    @lyon = Geocoder.search("Lyon")
+
+    @add =@booking.address
+    @results = Geocoder.search(@add)
+    @loc = ["Paris, France"]
+    puts '___________________________________________________________last coor'
+   puts @lyon.first.coordinates
+ puts Booking.near("Vancouver, Canada")
+
+end
+
+
 
 
 
