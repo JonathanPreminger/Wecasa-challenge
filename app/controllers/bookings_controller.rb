@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   require 'set'
   def create
-    @booking = Booking.create(booking_params)
+    @booking = Booking.create!(booking_params)
      redirect_to bookings_path
   end
 
@@ -65,20 +65,12 @@ class BookingsController < ApplicationController
     puts @pro_valid.inspect
   end
 
-
-
-
   def edit
     @booking = Booking.find(params[:id])
   end
 
   def index
     @bookings  = Booking.all
-    if @bookings.blank?
-    Booking.populate_from_json
-    puts '_______________________________________________________________all'
-    puts Booking.all
-    end
   end
 
   def destroy

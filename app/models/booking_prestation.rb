@@ -4,6 +4,9 @@ class BookingPrestation < ApplicationRecord
   accepts_nested_attributes_for :prestation
 
 
+
+
+
   def self.populate_from_json
     Booking.populate_from_json
     file = File.read('data.json')

@@ -1,4 +1,9 @@
 <p>Booking For :<%= @booking.name %></p>
+<p>presta asked :<% @booking.prestations.each do |p| %></p>
+<p><%= p.reference %></p>
+<%end%>
+
+
 <% if !@pro_valid.blank? %>
 <% @pro_valid.each do |pro|%>
 <p>pro who got skills required for booking id numero <%=   @booking.id  %> : <%=   pro  %></p>
