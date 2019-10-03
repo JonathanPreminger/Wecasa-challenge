@@ -17,11 +17,42 @@ end
     it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
   end
 
-
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
   end
 
-   describe 'Associations' do
+  context "Validations" do
+
+    it 'should reject a booking with wrong email format' do
+      Booking.destroy_all
+      @booking = Booking.create(name:"Alex",email:"alexhotmailfr")
+      expect(Booking.count).to eq(0)
+    end
+
+    it 'should persist a booking with good email format' do
+      Booking.destroy_all
+      @booking = Booking.create(name:"Alex",email:"alex@hotmail.fr")
+      expect(Booking.count).to eq(1)
+    end
+  end
+
+
+  context 'Associations' do
+
+    describe 'Associations' do
+    end
+
+    it "should have many prestations" do
+      subject { described_class.new }
+      assc = described_class.reflect_on_association(:prestations)
+      expect(assc.macro).to eq :has_many
+    end
+
+    it "should have many booking_prestations" do
+      subject { described_class.new }
+      assc = described_class.reflect_on_association(:booking_prestations)
+      expect(assc.macro).to eq :has_many
+    end
   end
 end

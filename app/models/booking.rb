@@ -3,7 +3,8 @@ require "time"
   has_many :booking_prestations, :validate => false
   has_many :prestations, through: :booking_prestations
   accepts_nested_attributes_for :booking_prestations
-  validates :name, presence: true
+  validates :name, :email, presence: true
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
   def self.populate_from_json
     file = File.read('data.json')
