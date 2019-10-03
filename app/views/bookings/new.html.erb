@@ -1,8 +1,8 @@
 <%= form_for @booking do |f| %>
   <p>Name <%= f.text_field :name %></p>
-
   <%= f.fields_for :booking_prestations, BookingPrestation.new do |bp| %>
   <p><%= bp.collection_select :prestation_id, Prestation.all, :id, :reference, {prompt: "The one you want"} %></p>
+<<<<<<< HEAD
   <% end %>
   <%= f.fields_for :booking_prestations, BookingPrestation.new do |bp| %>
   <p><%= bp.collection_select :prestation_id, Prestation.all, :id, :reference, {prompt: "The one you want"} %></p>
@@ -16,5 +16,9 @@
   <p><%= bp.collection_select :prestation_id, Prestation.all, :id, :reference, {prompt: "The one you want"} %></p>
   <% end %>
 
+=======
+  <p><%= bp.collection_select :prestation_id, Prestation.all, :id, :reference, {prompt: "The one you want"} %></p>
+  <% end %>
+>>>>>>> f3b13f9bc13bfcbf842763c31b32f780ddf1fd4d
   <p><%= f.submit 'BOOK' %></p>
 <%end%>
