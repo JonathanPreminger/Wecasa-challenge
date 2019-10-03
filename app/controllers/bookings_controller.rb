@@ -1,13 +1,12 @@
 class BookingsController < ApplicationController
   require 'set'
+  require "time"
 
   def create
     @booking = Booking.create!(booking_params)
-<<<<<<< HEAD
+
      redirect_to bookings_path
-=======
-    redirect_to @booking
->>>>>>> f3b13f9bc13bfcbf842763c31b32f780ddf1fd4d
+
   end
 
   def new
@@ -22,77 +21,69 @@ class BookingsController < ApplicationController
       @skills_required << presta.reference
     end
     who_got_the_skills
-    distance
+    match_datetime
   end
 
   def who_got_the_skills
     @skills_availlable = []
     @pro_valid = []
-
-
     @pros.each do |pro|
-      puts '_______________________________________________begin pro'
       @name = pro.name
       @skills_availlable.clear
-      puts "_________________________________ number of presta for a #{@name}"
-      puts pro.prestations.count
-       pro.prestations.each do |presta_availlable|
-         @skills_availlable << presta_availlable.reference
+      pro.prestations.each do |presta_availlable|
+        @skills_availlable << presta_availlable.reference
       end
-      puts '___________________________________________________________skills available'
-
-      puts @skills_availlable
-      puts '___________________________________________________________skills required'
-
-      puts @skills_required
       @y = 0
       @pi = @skills_required.size
-      puts "___________________________________________________@pi"
-      puts @pi
       @skills_required.each do |x|
         if @skills_availlable.include?(x)
-          puts 'yes'
           @y = @y + 1
-          puts '___________________________________________________________@y ='
-          puts @y
-
         else
-          puts 'no'
           @y= @y - 1
-
         end
       end
-
       if @y ==  @pi
           @pro_valid << pro.name
         end
     end
-    puts '___________________________________________________________pro valid'
-    puts @pro_valid.inspect
   end
 
-<<<<<<< HEAD
-=======
-  def distance
-    @paris = "Paris"
+  def match_datetime
+    match_day
+    match_hour
+  end
 
-    @lyon = Geocoder.search("Lyon")
+  def match_day
+    @get_pro_back_for_day_tchek = []
+    @pro_day_available = []
+    @pro_valid.each do |p|
+      @get_pro_back_for_day_tchek << Pro.find_by(name:p)
+    end
+    @get_pro_back_for_day_tchek.each do |g|
+      g.openning_hours.each do |a|
+        if a.day == @booking.starts_at.strftime("%A").downcase
+          @pro_day_available << g.name
+        end
+      end
+    end
+  end
 
-    @add =@booking.address
-    @results = Geocoder.search(@add)
-    @loc = ["Paris, France"]
-    puts '___________________________________________________________last coor'
-   puts @lyon.first.coordinates
- puts Booking.near("Vancouver, Canada")
+  def match_hour
+    @get_pro_back_for_hour_tchek = []
+    @pro_hour_available = []
+    @pro_day_available.each do |p|
+      @get_pro_back_for_hour_tchek << Pro.find_by(name:p)
+    end
+    @get_pro_back_for_hour_tchek.each do |g|
+      g.openning_hours.each do |a|
+        @t =  @booking.starts_at + 2*60*60
+        if  @t.strftime("%I:%M%p").between?(a.starts_at.strftime("%I:%M%p"), a.ends_at.strftime("%I:%M%p"))
+          @pro_hour_available << g.name
+        end
+      end
+    end
+  end
 
-end
-
-
-
-
-
-
->>>>>>> f3b13f9bc13bfcbf842763c31b32f780ddf1fd4d
   def edit
     @booking = Booking.find(params[:id])
   end

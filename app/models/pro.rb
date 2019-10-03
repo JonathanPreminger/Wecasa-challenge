@@ -22,14 +22,16 @@ class Pro < ApplicationRecord
       max_kilometers = data_hash['pros'][x]['max_kilometers']
       id = (x + 1)
       Pro.create(name:name, address:address, lat:lat, lng:lng, max_kilometers:max_kilometers, id:id)
-
+      data_hash['pros'][x]['opening_hours'].size.times do |o|
+        day = data_hash['pros'][x]['opening_hours'][o]['day']
+        puts day
+        starts_at = data_hash['pros'][x]['opening_hours'][o]['starts_at']
+        ends_at = data_hash['pros'][x]['opening_hours'][o]['ends_at']
+        OpenningHour.create(day:day, starts_at:starts_at, ends_at:ends_at, pro_id:id )
+        puts "_______________________________________________________________________o"
+        puts o
+        puts OpenningHour.all.inspect
+      end
     end
-    puts '____________________________________________pro '
-
-    puts @pros
-    puts '____________________________________________pro '
-
-
   end
-
 end

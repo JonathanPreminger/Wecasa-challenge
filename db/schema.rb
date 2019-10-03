@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_001212) do
+ActiveRecord::Schema.define(version: 2019_10_03_133916) do
 
   create_table "appointements", force: :cascade do |t|
     t.datetime "starts_at"
@@ -33,14 +33,12 @@ ActiveRecord::Schema.define(version: 2019_10_03_001212) do
   create_table "bookings", force: :cascade do |t|
     t.string "email"
     t.string "name"
-    t.date "starts_at"
+    t.datetime "starts_at"
     t.text "address"
     t.integer "lat"
     t.integer "lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
   end
 
   create_table "openning_hours", force: :cascade do |t|
