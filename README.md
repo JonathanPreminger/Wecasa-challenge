@@ -1,24 +1,16 @@
-# README
+Welcome in the WeCasa challenge ! 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Download the repo, cd inside, then rails db:drop db:create db:migrate db:seed, then rails s.
+The seed is gonna parse the data.json at the root of the app and create all the database.
 
-Things you may want to cover:
+Open locahost:3000, and you will be on the index of booking.
+You can acces to the 4 booking stored in the database
+The show page of booking is a proposition of front style, you will find at this page the result of the Matching module, in concern in controllers, called in the method show of the booking controller. 
+The matching result is the composition of the matching prestation, the matching datetime, and the matching location wich use the geocoder gem.
+The pro available at the verry end of the show page is the pro who mastch all those matching parameters.
 
-* Ruby version
+At locahost:3000/bookings/new, you will find a form to create a new booking.
 
-* System dependencies
+Thank you for your attention,
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Jonathan Mete
