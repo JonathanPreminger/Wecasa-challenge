@@ -68,16 +68,24 @@ module Matching
     end
     @get_pro_back_for_hour_tchek.each do |g|
       g.openning_hours.each do |a|
-        @t =  @booking.starts_at + 2*60*60
-        @u= @t.strftime("%B %d, %Y %H:%M'")
-        puts" ____________________________________________  "
-        puts @t
-        puts @u
-        if  @t.strftime("%I:%M%p").between?(a.starts_at.strftime("%I:%M%p"), a.ends_at.strftime("%I:%M%p"))
+        puts'_______________________________________________a'
+        puts g.name
+        puts a.day
+        puts a.starts_at.strftime("%H:%M")
+        puts a.ends_at.strftime("%H:%M")
+        @id = g.id
+        if @id > 4
+          @t =  @booking.starts_at.in_time_zone("Europe/Paris")
+        else
+          @t = @booking.starts_at
+        end
+        puts @t.strftime("%H:%M")
+        if  @t.strftime("%H:%M").between?(a.starts_at.strftime("%H:%M"), a.ends_at.strftime("%H:%M"))
           @pro_hour_available << g.name
         end
       end
     end
+    @pro_hour_available = @pro_hour_available.uniq
   end
 
   def match_distance
@@ -87,16 +95,17 @@ module Matching
       @pro_back_for_distance_check << Pro.find_by(name:name)
     end
     @pro_back_for_distance_check.each do |pro|
-      '_____________________________________________real distance and max km'
+      @distance = @distance.to_i - @distance.to_i
+      @pro_max_km = @pro_max_km.to_i - @pro_max_km.to_i
       @distance = Geocoder::Calculations.distance_between(@booking, pro)
+      puts '___________ effective distance ___________'
       puts @distance
       @pro_max_km =  pro.max_kilometers
+      puts '___________ distance accepted ___________'
+      puts   @pro_max_km
         if @distance < @pro_max_km
           @pro_valid_distance << pro
         end
     end
-    puts '__________________________________________________the array'
-    puts @pro_valid_distance.inspect
   end
-
 end

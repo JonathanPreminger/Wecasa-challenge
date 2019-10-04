@@ -1,11 +1,13 @@
 <p>Booking For :<%= @booking.name %></p>
 <p>day : <%= @booking.starts_at.strftime("%A") %></p>
+<% if !@t.blank? %>
+
 <p>at : <%= @t.strftime("%H:%M")%></p>
+<%end%>
 
 <p>presta asked :<% @booking.prestations.each do |p| %></p>
 <p><%= p.reference %></p>
 <%end%>
-
 
 <% if !@pro_valid.blank? %>
 <p>pro who got skills required : </p>
@@ -13,8 +15,12 @@
 <p> <%=   pro  %></p>
 <%end%>
 <%end%>
-<p>AND who are available at the desired day and the desired time <%  @pro_hour_available.each do |p| %> :</p>
-
+<p>AND who are available at the desired day </p>
+ <%  @pro_day_available.each do |p| %>
+<p> <%=   p  %></p>
+<%end%>
+<p>AND who are available at the desired time </p>
+<%  @pro_hour_available.each do |p| %>
 <p> <%=   p  %></p>
 <%end%>
 <p>The distance between the two : <%= @distance %></p>
