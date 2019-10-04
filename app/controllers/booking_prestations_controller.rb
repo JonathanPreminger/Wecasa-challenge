@@ -1,7 +1,9 @@
 class BookingPrestationsController < ApplicationController
+
   def create
     @booking_prestation = BookingPrestation.create!(booking_prestation_params)
   end
+  
   def index
     @booking_prestations  = BookingPrestation.all
     end

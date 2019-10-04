@@ -4,10 +4,6 @@ class ProsController < ApplicationController
   end
   def index
     @pros  = Pro.all
-    if @pros.blank?
-    Pro.populate_from_json
-    redirect_to pros_path
-    puts Pro.all
     end
   end
 

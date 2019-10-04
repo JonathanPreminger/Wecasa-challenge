@@ -8,10 +8,6 @@ class ProPrestationsController < ApplicationController
     @pro_prestations  = ProPrestation.all
     @booking  = Booking.all
     @booking_prestations  = BookingPrestation.all
-    if @pro_prestations.blank?
-    ProPrestation.populate_from_json
-    end
-
   end
 
   private
