@@ -5,7 +5,6 @@ class ProsController < ApplicationController
   def index
     @pros  = Pro.all
     end
-  end
 
   private
 
