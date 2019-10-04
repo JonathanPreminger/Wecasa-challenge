@@ -5,6 +5,7 @@ module Matching
     skills_required
     who_got_the_skills
     match_datetime
+    match_distance
   end
 
   def skills_required
@@ -78,4 +79,24 @@ module Matching
       end
     end
   end
+
+  def match_distance
+    @pro_back_for_distance_check = []
+    @pro_valid_distance = []
+    @pro_hour_available.each do |name|
+      @pro_back_for_distance_check << Pro.find_by(name:name)
+    end
+    @pro_back_for_distance_check.each do |pro|
+      '_____________________________________________real distance and max km'
+      @distance = Geocoder::Calculations.distance_between(@booking, pro)
+      puts @distance
+      @pro_max_km =  pro.max_kilometers
+        if @distance < @pro_max_km
+          @pro_valid_distance << pro
+        end
+    end
+    puts '__________________________________________________the array'
+    puts @pro_valid_distance.inspect
+  end
+
 end

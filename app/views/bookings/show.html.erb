@@ -17,3 +17,9 @@
 
 <p> <%=   p  %></p>
 <%end%>
+<p>The distance between the two : <%= @distance %></p>
+<p>The distance allowed : <%= @pro_max_km %></p>
+<p>The pro who accept the distance </p>
+<%@pro_valid_distance.each do |valid| %>
+<p style="color:red"><%=valid.name.upcase %></p>
+<%end%>

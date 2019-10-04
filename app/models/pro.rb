@@ -21,7 +21,7 @@ class Pro < ApplicationRecord
       lng = data_hash['pros'][x]['lng']
       max_kilometers = data_hash['pros'][x]['max_kilometers']
       id = (x + 1)
-      Pro.create(name:name, address:address, lat:lat, lng:lng, max_kilometers:max_kilometers, id:id)
+      Pro.create(name:name, address:address, latitude:lat, longitude:lng, max_kilometers:max_kilometers, id:id)
       data_hash['pros'][x]['opening_hours'].size.times do |o|
         day = data_hash['pros'][x]['opening_hours'][o]['day']
         puts day
@@ -34,4 +34,8 @@ class Pro < ApplicationRecord
       end
     end
   end
+
+  geocoded_by :address
+  after_validation :geocode
+
 end

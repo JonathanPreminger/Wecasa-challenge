@@ -7,11 +7,8 @@ class ProsController < ApplicationController
     if @pros.blank?
     Pro.populate_from_json
     redirect_to pros_path
-    puts '_______________________________________________________________all'
     puts Pro.all
     end
-
-
   end
 
   private

@@ -2,6 +2,8 @@
   <p>Name <%= f.text_field :name %></p>
 
   <p>Email <%= f.text_field :email %></p>
+  <p>Address <%= f.text_field :address %></p>
+
   <p>Choose between one and five prestations</p>
   <%= f.fields_for :booking_prestations, BookingPrestation.new do |bp| %>
   <p><%= bp.collection_select :prestation_id, Prestation.all, :id, :reference, {prompt: "The one you want"} %></p>

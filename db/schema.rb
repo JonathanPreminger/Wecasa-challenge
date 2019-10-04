@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_133916) do
+ActiveRecord::Schema.define(version: 2019_10_03_232740) do
 
   create_table "appointements", force: :cascade do |t|
     t.datetime "starts_at"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_133916) do
     t.integer "lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "openning_hours", force: :cascade do |t|
@@ -75,6 +77,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_133916) do
     t.integer "max_kilometers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
 end

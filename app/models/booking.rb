@@ -18,7 +18,11 @@ require "time"
       address = data_hash['bookings'][x]['address']
       lat  = data_hash['bookings'][x]['lat']
       lng  = data_hash['bookings'][x]['lng']
-      Booking.create(email:email,name:name, starts_at:starts_at,address:address, lat:lat, lng:lng)
+      Booking.create(email:email,name:name, starts_at:starts_at,address:address, latitude:lat, longitude:lng)
     end
   end
+
+  geocoded_by :address
+  after_validation :geocode
+
 end
