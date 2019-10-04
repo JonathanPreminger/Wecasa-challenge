@@ -1,0 +1,71 @@
+
+h1 {
+  font-family: 'CothamSans';
+  color: #187c5d;
+}
+p {
+  font-family: 'CothamSans';
+  color: #187c5d;
+
+}
+.width100 {
+  width:100%;
+}
+.height100p {
+  min-height: 100px;
+}
+.bottom-border {
+  border-bottom: solid #cfd6cf 1px;
+}
+.padding1 {
+  padding:1%;
+}
+.padding10 {
+  padding:3%;
+}
+.heightmax {
+  height:100%;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.margin{
+  margin-top: 10px;
+}
+.margin-left{
+  margin-left: 10px;
+}
+.result {
+  margin:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:20px;
+  width:150px;
+  height:30px;
+  border: solid transparent 1px;
+  border-radius: 10px;
+  background-color:#187c5d;
+  transition:0.5s;
+  &:hover {
+    background-color: #41af8c;
+    border: solid #656865 1px;
+    box-shadow: 3px 3px 3px #a0a0a0;
+  }
+}
+.result p {
+  font-family: 'CothamSans';
+  letter-spacing:2px;
+  color:white!important;
+}
+.grey {
+  color:#a0a0a0;
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'CothamSans';
+  src:font-url('CothamSans.otf');
+  font-weight: normal;
+  font-style: normal;
+}

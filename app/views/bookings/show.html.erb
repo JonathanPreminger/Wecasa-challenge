@@ -1,31 +1,70 @@
-<p>Booking For :<%= @booking.name %></p>
-<p>day : <%= @booking.starts_at.strftime("%A") %></p>
-<% if !@t.blank? %>
 
-<p>at : <%= @t.strftime("%H:%M")%></p>
-<%end%>
+<div class="width100 heightmax">
 
-<p>presta asked :<% @booking.prestations.each do |p| %></p>
-<p><%= p.reference %></p>
-<%end%>
+  <div class="bottom-border width100 height100p padding1">
+    <h1>BOOKING INFOS</h1>
+  </div>
 
-<% if !@pro_valid.blank? %>
-<p>pro who got skills required : </p>
-<% @pro_valid.each do |pro|%>
-<p> <%=   pro  %></p>
-<%end%>
-<%end%>
-<p>AND who are available at the desired day </p>
- <%  @pro_day_available.each do |p| %>
-<p> <%=   p  %></p>
-<%end%>
-<p>AND who are available at the desired time </p>
-<%  @pro_hour_available.each do |p| %>
-<p> <%=   p  %></p>
-<%end%>
-<p>The distance between the two : <%= @distance %></p>
-<p>The distance allowed : <%= @pro_max_km %></p>
-<p>The pro who accept the distance </p>
-<%@pro_valid_distance.each do |valid| %>
-<p style="color:red"><%=valid.name.upcase %></p>
-<%end%>
+  <div class="bottom-border width100 height100p padding10">
+    <div class="row">
+      <p>Booking For : </p><p class="grey">&nbsp;<%= @booking.name.capitalize %></p>
+      <p class="margin-left">Day :</p><p class="margin-left grey"> <%= @booking.starts_at.strftime("%m/%d/%Y") %></p>
+      <% if !@t.blank? %>
+        <p class="margin-left">At : </p><p class="margin-left grey"><%= @t.strftime("%H:%M")%></p>
+      <%end%>
+    </div>
+    <div class="row">
+      <p>Prestations asked : </p>
+      <% @booking.prestations.each do |p| %>
+        <p class="grey"> &nbsp;<%= p.reference.capitalize %>&nbsp;&nbsp;</p>
+      <%end%>
+  </div>
+  </div>
+
+  <div class="bottom-border width100 height100p padding10">
+    <% if !@pro_valid.blank? %>
+      <p>Pro who got skills required : </p>
+      <div class="row">
+        <% @pro_valid.each do |pro|%>
+          <div class="result">
+            <p class="box-valid"> <%= pro %></p>
+        </div>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
+
+  <div class="bottom-border width100 height100p padding10 margin">
+    <p>AND who are available at the desired day : </p>
+      <div class="row">
+       <%  @pro_day_available.each do |p| %>
+       <div class="result">
+         <p class="box-valid"> <%=   p  %></p>
+      </div>
+      <%end%>
+    </div>
+    <p>AND who are available at the desired time : </p>
+      <div class="row">
+      <%  @pro_hour_available.each do |p| %>
+      <div class="result">
+        <p class="box-valid"> <%=   p  %></p>
+      </div>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="bottom-border width100 height100p padding10 margin">
+    <p>AND who accept the distance : </p>
+    <div class="row">
+      <% if @pro_valid_distance.empty? %>
+        <p class="grey">Sorry, nobody is available near your location.</p>
+      <% else %>
+        <%@pro_valid_distance.each do |valid| %>
+          <div class="result">
+            <p class="box-valid"><%=valid.name %></p>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+</div>
