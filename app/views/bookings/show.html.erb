@@ -35,33 +35,39 @@
   </div>
 
   <div class="bottom-border width100 height100p padding10 margin">
-    <p>AND who are available at the desired day : </p>
+    <p>Pro who are available at the desired day and time : </p>
       <div class="row">
-       <%  @pro_day_available.each do |p| %>
-       <div class="result">
-         <p class="box-valid"> <%=   p  %></p>
-      </div>
-      <%end%>
-    </div>
-    <p>AND who are available at the desired time : </p>
-      <div class="row">
-      <%  @pro_hour_available.each do |p| %>
+      <%  @pro_day_and_hour_available.each do |pro| %>
       <div class="result">
-        <p class="box-valid"> <%=   p  %></p>
+        <p class="box-valid"> <%=  pro %></p>
       </div>
       <%end%>
     </div>
   </div>
 
   <div class="bottom-border width100 height100p padding10 margin">
-    <p>AND who accept the distance : </p>
+    <p>Pro who accept the distance : </p>
     <div class="row">
       <% if @pro_valid_distance.empty? %>
         <p class="grey">Sorry, nobody is available near your location.</p>
       <% else %>
         <%@pro_valid_distance.each do |valid| %>
           <div class="result">
-            <p class="box-valid"><%=valid.name %></p>
+            <p class="box-valid"><%=valid %></p>
+          </div>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+  <div class="bottom-border width100 height100p padding10 margin">
+    <p>Pro who match all the previous conditions</p>
+    <div class="row">
+      <% if @final_find.empty? %>
+        <p class="grey">Sorry, nobody is available near your location.</p>
+      <% else %>
+        <%@final_find.each do |valid| %>
+          <div class="result">
+            <p class="box-valid"><%=valid %></p>
           </div>
         <%end%>
       <%end%>

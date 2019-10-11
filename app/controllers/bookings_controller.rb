@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
-    matching_all
+    find_pro
   end
 
   def index
