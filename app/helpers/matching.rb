@@ -1,5 +1,4 @@
 module Matching
-  extend ActiveSupport::Concern
 
   def find_pro
     matching_all
@@ -9,7 +8,7 @@ module Matching
   def matching_all
     @pros = Pro.all
     skills_required
-    who_got_the_skills
+    match_skills
     match_datetime
     match_distance
   end
@@ -19,7 +18,7 @@ module Matching
     @booking.prestations.each { |presta| @skills_required << presta.reference }
   end
 
-  def who_got_the_skills
+  def match_skills
     skills_availlable = Array.new
     @pro_valid = Array.new
     @pros.each do |pro|
@@ -27,7 +26,7 @@ module Matching
       skills_availlable.clear
       pro.prestations.each { |presta_availlable| skills_availlable << presta_availlable.reference }
       number_of_skills_of_the_pro = 0
-      @skills_required.each { |skill_required| number_of_skills_of_the_pro += 1  if skills_availlable.include?(skill_required) }
+      @skills_required.each { |skill_required| number_of_skills_of_the_pro += 1 if skills_availlable.include?(skill_required) }
       @pro_valid << pro.name if number_of_skills_of_the_pro ==  @skills_required.size
     end
   end

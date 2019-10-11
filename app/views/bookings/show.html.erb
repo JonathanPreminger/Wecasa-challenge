@@ -63,7 +63,7 @@
     <p>Pro who match all the previous conditions</p>
     <div class="row">
       <% if @final_find.empty? %>
-        <p class="grey">Sorry, nobody is available near your location.</p>
+        <p class="grey">Sorry, nobody match all the conditions.</p>
       <% else %>
         <%@final_find.each do |valid| %>
           <div class="result">
